@@ -31,5 +31,6 @@ export default defineComponent({
 <style>
 .main {
   height: 100vh;
+  overflow: hidden;
 }
 </style>

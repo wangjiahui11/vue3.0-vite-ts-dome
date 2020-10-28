@@ -1,6 +1,7 @@
 import Mock from 'mockjs'
-import { UserInfo } from "../typings/index";
-const getUserInfo = (options: any): UserInfo => {
+import { getQueryParameters } from '../util'
+
+const getUserInfo = (options: any) => {
   return {
     code: 200,
     data: {
@@ -30,5 +31,46 @@ const sliderList=()=>{
   }
 }
 
+const lessonsList = <T>(options:T)=>{
+  let param = getQueryParameters(options)
+  let limit = Number(param.limit)
+  let currentCategory = Number(param.category)
+  let item
+  let AllItem = { title: 'ALL类型', url: '/img/js.jpg', price: 2000, category: 0 }
+  let VueItem = { title: 'VUE类型', url: '/img/vue3.0.jpg', price:1200, category:1}
+  let ReactItem =  { title: 'REACT类型', url: '/img/react.jpg', price:1800, category:2}
+  let NodeItem =  { title: 'NODE类型', url: '/img/node.png', price:1660, category:3}
+  switch (currentCategory) {
+    case 0:
+      item = AllItem
+      break;
+    case 1:
+      item = VueItem
+      break;
+    case 2:
+      item = ReactItem
+      break;
+    case 3:
+      item = NodeItem
+      break;
+    default:
+      item = []
+      break;
+  }
+  const data = Mock.mock({
+    hasMore:true,
+    loading:false,
+    limit:10,
+    offset:0,
+    [`list|${limit}`]: [item]
+  })
+  const items = data
+  return {
+    code: 200,
+    data: items
+  }
+}
+
 Mock.mock(/\/api\/user\/info/, 'get', getUserInfo)
 Mock.mock(/\/api\/slider\/list/, 'get', sliderList)
+Mock.mock(/\/api\/lessons\/list/, 'get', lessonsList)

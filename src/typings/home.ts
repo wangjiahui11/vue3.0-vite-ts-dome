@@ -7,10 +7,9 @@ export interface ISlider {
 
 export interface ILesson {
   title: string,
-  video: string,
-  poster: string,
+  url: string,
   price: number,
-  category: string
+  category: number
 }
 
 export interface ILessons {

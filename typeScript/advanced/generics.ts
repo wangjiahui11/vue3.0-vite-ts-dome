@@ -9,6 +9,9 @@ function createArray<T>(length: number, value: T): Array<T> {
   return result;
 }
 
+// 箭头函数的泛型
+const foo = <T>(x: T) => x;
+
 createArray<string>(3, 'x'); // ['x', 'x', 'x']
 
 // 多个参数 (U,T数据交换)

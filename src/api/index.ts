@@ -7,9 +7,18 @@ export function getUserInfo() {
     method: 'get'
   })
 }
+
 export function getsliderList() {
   return request({
     url: '/api/slider/list',
     method: 'get'
+  })
+}
+
+export function getsLessonsList<T>(params:T) {
+  return request({
+    url: '/api/lessons/list',
+    method: 'get',
+    params
   })
 }

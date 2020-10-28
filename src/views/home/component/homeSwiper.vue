@@ -23,7 +23,6 @@ export default defineComponent({
     //------- 切换页面做缓存作用------------
     if (swiperList.value.length === 0) {
       await store.dispatch(`home/${TYPES.GET_SLIDER}`)
-      console.log('render');
     }
     return {
       swiperList

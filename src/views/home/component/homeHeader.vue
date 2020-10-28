@@ -38,6 +38,7 @@ export default defineComponent({
 
 <style lang="scss">
 .header{
+  position: relative;
   width: 100%;
   height: 100px;
   background-color: #24292e;

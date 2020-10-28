@@ -1,8 +1,8 @@
 
-import { CATEGORY_TYPES, IHomeState, ISlider } from '../../typings/home';
+import { CATEGORY_TYPES, IHomeState, ISlider, ILessons} from '../../typings/home';
 import { IGlobalState } from '..'
 import { Module } from "vuex";
-import { getsliderList} from '/@/api/index.ts'
+import { getsliderList,getsLessonsList} from '/@/api/index.ts'
 import * as TYPES from "../actions-types.ts";
 
 const state: IHomeState = {
@@ -27,6 +27,9 @@ const home: Module<IHomeState, IGlobalState> = {
     },
     [TYPES.GET_SLIDER]: (state, payload: ISlider[]) =>{
         state.sliders=payload
+    },
+    [TYPES.GET_LESSONS]: (state, payload: ILessons) =>{
+        state.lessons=payload
     }
   },
   // 执行mutations 通过commit 放法
@@ -34,7 +37,11 @@ const home: Module<IHomeState, IGlobalState> = {
    async [TYPES.GET_SLIDER]({commit}){
       let res = await getsliderList()
       commit(TYPES.GET_SLIDER, res.data)
-    }
+    },
+    async [TYPES.GET_LESSONS]({commit}){
+      let res = await getsLessonsList({ limit: 10, category: state.currentCategory})
+      commit(TYPES.GET_LESSONS, res.data)
+    },
   }
 }
 

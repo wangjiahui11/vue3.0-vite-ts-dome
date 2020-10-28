@@ -1,6 +1,6 @@
 
 
-## vue全家桶+viti+TS尝鲜版
+## vue全家桶+vite+TS尝鲜版
 
 ### 环境搭建
 
@@ -30,7 +30,7 @@
 
        yarn create vite-app <project-name>
 
-     - 集成TS   
+     - 集成TS
 
        安装 ：yarn add typescript --D
 
@@ -138,14 +138,14 @@
 
      ```
      	yarn add --dev vue-router@4.0.0-beta.2
-     	
+
      ```
 
      在src目录下，`router文件夹`，并在文件夹内`创建index.ts`
 
      ```
      import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router';
-     
+
      const routes: RouteRecordRaw[] = [
        {
          path: '/',
@@ -153,12 +153,12 @@
          component:  () => import('../views/home/index.vue'),
        }
      ];
-     
+
      const router = createRouter({
        history: createWebHistory(process.env.BASE_URL),
        routes,
      });
-     
+
      export default router;
      ```
 
@@ -175,7 +175,7 @@
      ```
      import { index } from './modules/index';
      import { createStore } from 'vuex';
-     
+
      export default createStore({
        mutations: {},
        actions: {},
@@ -204,11 +204,11 @@
 
        ```
        import path from 'path';
-       
+
        const pathResolve = (pathStr: string) => {
          return path.resolve(__dirname, pathStr);
        };
-       
+
        module.exports = {
          optimizeDeps: {
            include: ["moment", "echarts", "axios", "mockjs", 'vant']
@@ -237,12 +237,12 @@
        ```
        # 通过 npm 安装
        npm i vant -S
-       
+
        # 通过 yarn 安装
        yarn add vant
-       
+
        在main.ts下引入
-       import 'vant/lib/index.css'; 
+       import 'vant/lib/index.css';
        注意：vite在引入安装可能出了问题 我采用这种方式 import '/@modules/vant/lib/index.css'
        import Vant from 'vant';
        ```
@@ -252,16 +252,16 @@
        ```
        # 通过 npm 安装
        npm i axios -S
-       
+
        # 通过 yarn 安装
-       yarn add axios 
+       yarn add axios
        ```
 
        在src目录下，新建lib文件夹，并在文件夹内创建`request.ts`，设置拦截器
 
        ```
        import axios from "axios";
-       
+
        // create an axios instance
        const service = axios.create({
          // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -269,7 +269,7 @@
          // withCredentials: true, // send cookies when cross-domain requests
          timeout: 30000 // request timeout
        })
-       
+
        // 添加请求拦截器
        service.interceptors.request.use(function (config: any) {
          // 在发送请求之前做些什么
@@ -293,7 +293,7 @@
 
        ```
        import request from '../utils/request'
-       
+
        // --------------- 请求用户信息---------
        export function getUserInfo() {
          return request({
@@ -303,14 +303,14 @@
        }
        ```
 
-       
+
 
      - #### 集成mock数据
 
        ```
        # 通过 npm 安装
        npm i mockjs --S
-       
+
        # 通过 yarn 安装
        yarn add mockjs
        ```
@@ -357,7 +357,7 @@
        import './mock/index';
        import '/@modules/vant/lib/index.css'
        import Vant from 'vant';
-       
+
        createApp(App).use(Vant).use(router).use(store).mount('#app');
        ```
 
@@ -389,6 +389,3 @@
        }
        </style>
        ```
-
-     
-
